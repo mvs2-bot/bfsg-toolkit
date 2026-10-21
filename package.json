@@ -1,0 +1,16 @@
+{
+  "name": "bfsg-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Automatischer BFSG/WCAG-2.1-AA-Scan für Onlineshops und Berichtsgenerator",
+  "type": "module",
+  "scripts": {
+    "scan": "node src/scan.mjs",
+    "report": "node src/report.mjs",
+    "test": "node test/run-demo.mjs"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "playwright": "1.56.1"
+  }
+}
