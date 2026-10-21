@@ -185,3 +185,16 @@ section.kontakt { background: var(--akzent-dunkel); color: #fff; }
 .text h2 { font-size: 1.35rem; margin-top: 2rem; }
 .platzhalter { background: #fff3c4; padding: 0 0.2em; }
 .kontakt .hinweis { color: #fff; }
+
+/* Hinweis "Bald verfügbar" vor dem offiziellen Start */
+.bald { background: #fff7ed; border-bottom: 1px solid #f3d3a8; }
+.bald p { margin: 0; padding: 0.75rem 0; color: var(--text); }
+.bald-marke {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--warnung);
+  background: #fff7ed;
+  border: 1px solid #f3d3a8;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+}
