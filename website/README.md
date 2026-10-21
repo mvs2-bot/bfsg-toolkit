@@ -6,6 +6,7 @@ Statische Landingpage ohne Build-Schritt, ohne Cookies, ohne Tracking und ohne e
 |---|---|
 | `index.html` | Startseite: Problem, Ablauf, Pakete, FAQ, Kontakt |
 | `impressum.html`, `datenschutz.html` | Pflichtseiten, Platzhalter sind gelb markiert (`class="platzhalter"`) |
+| `menue.js` | Burger-Menü auf schmalen Bildschirmen und Tageszähler seit Inkrafttreten des BFSG (ohne Skript bleibt die Navigation sichtbar) |
 | `barrierefreiheit.html` | Erklärung zur Barrierefreiheit der eigenen Seite |
 | `beispielbericht.pdf` | Bericht zum Demo-Shop aus `test/` (keine echten Kundendaten) |
 
