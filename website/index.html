@@ -8,6 +8,7 @@
   <link rel="canonical" href="https://bfsg-checkup.de/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <script src="menue.js" defer></script>
   <meta property="og:title" content="BFSG-Check für Onlineshops">
   <meta property="og:description" content="Barrierefreiheit nach BFSG und WCAG 2.1 AA prüfen lassen: verständlicher Bericht, konkrete Lösungen, Festpreise.">
   <meta property="og:url" content="https://bfsg-checkup.de/">
@@ -20,15 +21,21 @@
   <header class="kopf">
     <div class="huelle">
       <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
-        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#0b5d6b"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>bfsg-<span class="hl">checkup</span>.de</span>
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#0b5d6b"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#f5b400" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#f5b400" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>bfsg-<span class="hl">checkup</span><span class="tld">.de</span></span>
       </a>
-      <nav class="navi" aria-label="Hauptnavigation">
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
+        <span class="nur-vorlesen">Menü</span>
+        <svg class="auf" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="zu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="navi" id="menue" aria-label="Hauptnavigation">
         <ul>
+          <li><a href="#warum">Warum</a></li>
           <li><a href="#ablauf">Ablauf</a></li>
           <li><a href="#pakete">Pakete</a></li>
           <li><a href="#faq">Fragen</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a class="navi-cta" href="#kontakt">Erst-Befund anfordern</a></li>
         </ul>
       </nav>
     </div>
@@ -44,36 +51,40 @@
   <main id="inhalt">
     <section class="held" aria-labelledby="titel">
       <div class="huelle">
-        <p class="marker">Barrierefreiheitsstärkungsgesetz seit 28.06.2025 in Kraft</p>
-        <h1 id="titel">Ist Ihr Onlineshop barrierefrei nach BFSG?</h1>
-        <p class="einleitung">Wir prüfen Ihren Kaufprozess von der Startseite bis zum Checkout nach WCAG 2.1 AA. Sie bekommen einen verständlichen Bericht, priorisierte Befunde und auf Wunsch die fertige Umsetzung. Alles zum Festpreis.</p>
+        <p class="marker">Seit 28.06.2025 in Kraft: <a href="https://www.gesetze-im-internet.de/bfsg/">Barrierefreiheitsstärkungsgesetz</a></p>
+        <h1 id="titel">Ist Ihr Onlineshop <span class="hl">barrierefrei</span> nach BFSG?</h1>
+        <p class="einleitung">Wir prüfen Ihren Kaufprozess von der Startseite bis zum Checkout nach WCAG 2.1 AA. Sie bekommen einen verständlichen Bericht mit priorisierten Befunden und auf Wunsch die fertige Umsetzung. Alles zum Festpreis.</p>
         <div class="knoepfe">
-          <a class="knopf knopf-haupt" href="#kontakt">Kostenlosen Erst-Befund anfordern</a>
+          <a class="knopf knopf-sonne" href="#kontakt">Kostenlosen Erst-Befund anfordern</a>
           <a class="knopf knopf-neben" href="#pakete">Pakete und Preise</a>
         </div>
-        <ul class="vorteile">
-          <li>Automatischer Scan und manuelle Prüfung</li>
-          <li>Bericht auf Deutsch, ohne Fachchinesisch</li>
-          <li>Shopify, Shopware, WooCommerce und mehr</li>
+        <ul class="zahlen">
+          <li data-bfsg-tage><strong>28.06.2025</strong> <span>trat das BFSG in Kraft</span></li>
+          <li><strong>WCAG 2.1</strong> Stufe AA, Scan und Handprüfung</li>
+          <li><strong>390 €</strong> Festpreis für den Quick-Check</li>
         </ul>
       </div>
     </section>
 
-    <section aria-labelledby="warum">
+    <section class="flaeche" aria-labelledby="warum">
       <div class="huelle">
+        <p class="ueberzeile">Hintergrund</p>
         <h2 id="warum">Warum das Thema jetzt wichtig ist</h2>
         <div class="raster">
-          <div class="karte">
+          <div class="karte karte-symbol">
+            <span class="symbol"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5.5C14.3 4.6 13.3 4 12 4c-1.9 0-3.3 1.2-3.3 2.8 0 3.6 6.8 2.7 6.8 6.6 0 1-.6 1.9-1.5 2.4M9 18.5c.7.9 1.7 1.5 3 1.5 1.9 0 3.3-1.2 3.3-2.8 0-3.6-6.8-2.7-6.8-6.6 0-1 .6-1.9 1.5-2.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>Pflicht für viele Shops</h3>
             <p>Seit dem 28. Juni 2025 müssen Onlineshops für Verbraucher barrierefrei sein. Ausgenommen sind nur Kleinstunternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz.</p>
           </div>
-          <div class="karte">
+          <div class="karte karte-symbol">
+            <span class="symbol"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5L2.8 19.5h18.4L12 3.5zM12 10v4.5M12 17.2v.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>Behörden und Abmahnungen</h3>
             <p>Die Marktüberwachung kann Mängel beanstanden und Bußgelder verhängen. Dazu kommen Abmahnungen von Mitbewerbern und Verbänden.</p>
           </div>
-          <div class="karte">
+          <div class="karte karte-symbol">
+            <span class="symbol"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.3a3.5 3.5 0 0 1 0 6.4M18 14.5c2 .8 3.5 2.8 3.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>Mehr Kundschaft</h3>
-            <p>Barrierefreiheit hilft nicht nur Menschen mit Behinderung. Gute Kontraste, klare Formulare und Tastaturbedienung machen das Einkaufen für alle leichter, besonders auf dem Handy.</p>
+            <p>Gute Kontraste, klare Formulare und Tastaturbedienung helfen nicht nur Menschen mit Behinderung, sondern machen das Einkaufen für alle leichter, besonders auf dem Handy.</p>
           </div>
         </div>
         <div class="kasten">
@@ -84,19 +95,20 @@
 
     <section id="ablauf" aria-labelledby="ablauf-titel">
       <div class="huelle">
+        <p class="ueberzeile">In vier Schritten</p>
         <h2 id="ablauf-titel">So läuft der Check ab</h2>
         <ol class="schritte raster">
           <li class="karte">
             <h3>Automatischer Scan</h3>
-            <p>Wir testen die wichtigen Seiten Ihres Kaufprozesses gegen alle automatisch prüfbaren Kriterien der WCAG 2.1 in Stufe A und AA, dazu Tastaturbedienung und die Ansicht auf kleinen Bildschirmen.</p>
+            <p>Wir testen die wichtigen Seiten Ihres Kaufprozesses gegen alle automatisch prüfbaren Kriterien der WCAG 2.1 AA, dazu Tastatur und Handy-Ansicht.</p>
           </li>
           <li class="karte">
             <h3>Prüfung von Hand</h3>
-            <p>Automatische Tests finden nur einen Teil der Barrieren. Deshalb prüfen wir zusätzlich nach einer festen Checkliste mit Tastatur und Screenreader, vom Suchen bis zum Bezahlen.</p>
+            <p>Automatische Tests finden nur einen Teil der Barrieren. Deshalb prüfen wir nach fester Checkliste mit Tastatur und Screenreader, vom Suchen bis zum Bezahlen.</p>
           </li>
           <li class="karte">
             <h3>Verständlicher Bericht</h3>
-            <p>Sie erhalten einen Bericht als PDF: Was ist das Problem, wo tritt es auf, wie dringend ist es und wie wird es behoben. Sortiert nach Priorität.</p>
+            <p>Ein PDF, sortiert nach Priorität: Was ist das Problem, wo tritt es auf, wie dringend ist es und wie wird es behoben.</p>
           </li>
           <li class="karte">
             <h3>Umsetzung</h3>
@@ -107,8 +119,9 @@
       </div>
     </section>
 
-    <section id="pakete" aria-labelledby="pakete-titel">
+    <section id="pakete" class="flaeche" aria-labelledby="pakete-titel">
       <div class="huelle">
+        <p class="ueberzeile">Festpreise</p>
         <h2 id="pakete-titel">Pakete und Preise</h2>
         <p class="einleitung">Feste Preise, klarer Umfang. Sie wissen vorher, was Sie bekommen.</p>
         <p class="bald-marke" data-bald>Bald verfügbar: Buchungen sind in Kürze möglich.</p>
@@ -156,11 +169,12 @@
 
     <section id="faq" aria-labelledby="faq-titel">
       <div class="huelle schmal">
+        <p class="ueberzeile">FAQ</p>
         <h2 id="faq-titel">Häufige Fragen</h2>
         <details>
           <summary>Ist mein Shop vom BFSG betroffen?</summary>
           <div>
-            <p>Betroffen sind Onlineshops, die an Verbraucher verkaufen. Ausgenommen sind Kleinstunternehmen, also Unternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz oder Jahresbilanzsumme. Reine B2B-Shops fallen in der Regel nicht darunter. Im Zweifel klärt das eine Anwaltskanzlei verbindlich.</p>
+            <p>Betroffen sind Onlineshops, die an Verbraucher verkaufen. Ausgenommen sind Kleinstunternehmen, also Unternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz oder Jahresbilanzsumme. Reine B2B-Shops fallen in der Regel nicht darunter. Den Wortlaut finden Sie im <a href="https://www.gesetze-im-internet.de/bfsg/">Barrierefreiheitsstärkungsgesetz auf gesetze-im-internet.de</a>. Im Zweifel klärt eine Anwaltskanzlei verbindlich, ob Ihr Shop betroffen ist.</p>
           </div>
         </details>
         <details>
@@ -198,6 +212,7 @@
 
     <section id="kontakt" class="kontakt" aria-labelledby="kontakt-titel">
       <div class="huelle schmal">
+        <p class="ueberzeile">Unverbindlich</p>
         <h2 id="kontakt-titel">Kostenlosen Erst-Befund anfordern</h2>
         <p>Schreiben Sie uns eine kurze E-Mail. So geht es:</p>
         <ol>
@@ -206,7 +221,7 @@
           <li>Innerhalb von 2 Werktagen erhalten Sie drei konkrete Befunde von uns</li>
         </ol>
         <div class="knoepfe">
-          <a class="knopf knopf-haupt" href="mailto:kontakt@bfsg-checkup.de?subject=Kostenloser%20Erst-Befund&amp;body=Adresse%20des%20Shops%3A%20%0AShopsystem%3A%20%0A">E-Mail an kontakt@bfsg-checkup.de</a>
+          <a class="knopf knopf-sonne" href="mailto:kontakt@bfsg-checkup.de?subject=Kostenloser%20Erst-Befund&amp;body=Adresse%20des%20Shops%3A%20%0AShopsystem%3A%20%0A">E-Mail an kontakt@bfsg-checkup.de</a>
         </div>
         <p class="hinweis">Ihre Angaben verwenden wir nur, um Ihre Anfrage zu beantworten. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       </div>
