@@ -103,6 +103,12 @@ export const REGELN = {
     fix: 'Nur die für die jeweilige Rolle erlaubten ARIA-Attribute verwenden.',
     wcag: '4.1.2',
   },
+  'aria-prohibited-attr': {
+    titel: 'Unzulässige ARIA-Beschriftungen',
+    wirkung: 'Beschriftungen wie aria-label an Elementen ohne passende Rolle werden von Screenreadern ignoriert oder uneinheitlich vorgelesen.',
+    fix: 'aria-label nur an Bedienelementen oder Elementen mit passender Rolle verwenden, sonst sichtbaren Text nutzen.',
+    wcag: '4.1.2',
+  },
   'aria-required-attr': {
     titel: 'Pflicht-ARIA-Attribute fehlen',
     wirkung: 'Bedienelemente wie Schieberegler oder Aufklapper melden ihren Zustand nicht.',

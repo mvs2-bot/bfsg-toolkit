@@ -24,7 +24,6 @@ npx playwright install chromium
 ## Was automatisch geprüft wird
 
 - Erster Aufruf mit Cookie-Banner und Dialogen (Länderauswahl usw.) wird separat geprüft. Danach schließt der Scan die Dialoge über gängige Knöpfe („Alle akzeptieren“, „Ich stimme zu“ …). Hat ein Shop andere Beschriftungen, trägt man sie in der Konfig unter `"klicken"` ein.
-
 - Alle axe-core-Regeln für WCAG 2.0/2.1 A und AA (Alt-Texte, Kontraste, Beschriftungen, ARIA, Sprache, Titel usw.)
 - Tastatur: bis zu 40 Tab-Schritte, ob der Fokus sichtbar ist (WCAG 2.4.7)
 - Reflow: kein seitliches Scrollen bei 320 px Breite (WCAG 1.4.10)
