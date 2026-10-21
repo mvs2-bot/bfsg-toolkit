@@ -1,11 +1,30 @@
 {
   "kunde": "Beispiel-Shop GmbH",
+  "klicken": [],
   "seiten": [
-    { "name": "Startseite", "url": "https://www.beispiel-shop.de/" },
-    { "name": "Kategorieseite", "url": "https://www.beispiel-shop.de/damen/shirts" },
-    { "name": "Produktseite", "url": "https://www.beispiel-shop.de/produkt/shirt-blau" },
-    { "name": "Suche", "url": "https://www.beispiel-shop.de/search?q=shirt" },
-    { "name": "Warenkorb", "url": "https://www.beispiel-shop.de/cart" },
-    { "name": "Kontakt", "url": "https://www.beispiel-shop.de/kontakt" }
+    {
+      "name": "Startseite",
+      "url": "https://www.beispiel-shop.de/"
+    },
+    {
+      "name": "Kategorieseite",
+      "url": "https://www.beispiel-shop.de/damen/shirts"
+    },
+    {
+      "name": "Produktseite",
+      "url": "https://www.beispiel-shop.de/produkt/shirt-blau"
+    },
+    {
+      "name": "Suche",
+      "url": "https://www.beispiel-shop.de/search?q=shirt"
+    },
+    {
+      "name": "Warenkorb",
+      "url": "https://www.beispiel-shop.de/cart"
+    },
+    {
+      "name": "Kontakt",
+      "url": "https://www.beispiel-shop.de/kontakt"
+    }
   ]
 }
