@@ -1,0 +1,187 @@
+/* bfsg-checkup.de – bewusst schlicht: Systemschriften, keine externen Dateien, Kontraste nach WCAG AA */
+:root {
+  --text: #1a1f24;
+  --text-leise: #4a535c;
+  --hintergrund: #ffffff;
+  --flaeche: #f3f6f8;
+  --linie: #d5dce2;
+  --akzent: #0b5d6b;
+  --akzent-dunkel: #08434e;
+  --akzent-hell: #e4f1f3;
+  --warnung: #8a4b00;
+  --fokus: #c2410c;
+  --breite: 68rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--hintergrund);
+}
+
+a { color: var(--akzent); text-underline-offset: 0.15em; }
+a:hover { color: var(--akzent-dunkel); }
+
+:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.6rem 1rem;
+  background: var(--text);
+  color: #fff;
+  z-index: 10;
+}
+.skip-link:focus { top: 1rem; color: #fff; }
+
+.huelle { max-width: var(--breite); margin: 0 auto; padding: 0 1.25rem; }
+
+/* Kopf */
+.kopf { border-bottom: 1px solid var(--linie); }
+.kopf .huelle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.marke {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.marke svg { flex: none; }
+.marke .hl { color: var(--akzent); }
+.navi ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.navi a { color: var(--text); text-decoration: none; padding: 0.25rem 0; }
+.navi a:hover { text-decoration: underline; }
+
+/* Abschnitte */
+section { padding: 3.5rem 0; }
+section:nth-of-type(even) { background: var(--flaeche); }
+h1, h2, h3 { line-height: 1.25; margin: 0 0 1rem; overflow-wrap: break-word; hyphens: auto; }
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.9rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1rem; }
+.einleitung { font-size: 1.2rem; color: var(--text-leise); max-width: 44rem; }
+.schmal { max-width: 46rem; }
+
+.held { padding: 4rem 0 3.5rem; background: linear-gradient(180deg, var(--akzent-hell), var(--hintergrund)); }
+.held .marker {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--akzent-dunkel);
+  background: #fff;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.knoepfe { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.knopf {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--akzent);
+}
+.knopf-haupt { background: var(--akzent); color: #fff; }
+.knopf-haupt:hover { background: var(--akzent-dunkel); border-color: var(--akzent-dunkel); color: #fff; }
+.knopf-neben { background: #fff; color: var(--akzent); }
+.knopf-neben:hover { background: var(--akzent-hell); }
+
+.vorteile { list-style: none; padding: 0; margin: 1.75rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; color: var(--text-leise); }
+.vorteile li::before { content: "✓ "; color: var(--akzent); font-weight: 700; }
+
+/* Raster */
+.raster { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-top: 1.5rem; }
+.karte {
+  background: #fff;
+  border: 1px solid var(--linie);
+  border-radius: 8px;
+  padding: 1.4rem;
+}
+.karte h3 { margin-bottom: 0.5rem; }
+.karte p:last-child, .karte ul:last-child { margin-bottom: 0; }
+
+.schritte { counter-reset: schritt; list-style: none; padding: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+.schritte li { counter-increment: schritt; position: relative; }
+.schritte li::before {
+  content: counter(schritt);
+  position: absolute;
+  left: 1.4rem;
+  top: 1.35rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--akzent);
+  color: #fff;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.schritte > li.karte { padding-left: 4.25rem; }
+
+/* Preise */
+.preis { font-size: 2rem; font-weight: 700; margin: 0.25rem 0 0.75rem; }
+.preis small { font-size: 1rem; font-weight: 400; color: var(--text-leise); }
+.karte ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+.karte-hervor { border: 2px solid var(--akzent); }
+.etikett { font-size: 0.85rem; font-weight: 700; color: var(--akzent-dunkel); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+.hinweis { font-size: 0.95rem; color: var(--text-leise); margin-top: 1.25rem; }
+
+.kasten {
+  border-left: 4px solid var(--warnung);
+  background: #fff7ed;
+  padding: 1rem 1.25rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5rem 0 0;
+}
+.kasten p:last-child { margin-bottom: 0; }
+
+/* FAQ */
+details { background: #fff; border: 1px solid var(--linie); border-radius: 8px; margin-bottom: 0.75rem; }
+summary { cursor: pointer; padding: 1rem 1.25rem; font-weight: 600; }
+details > div { padding: 0 1.25rem 1rem; }
+
+/* Kontakt */
+section.kontakt { background: var(--akzent-dunkel); color: #fff; }
+.kontakt h2, .kontakt p { color: #fff; }
+.kontakt a:not(.knopf) { color: #fff; }
+.kontakt .knopf-haupt { background: #fff; color: var(--akzent-dunkel); border-color: #fff; }
+.kontakt .knopf-haupt:hover { background: var(--akzent-hell); }
+.kontakt ol { padding-left: 1.3rem; }
+
+/* Fuß */
+.fuss { padding: 2rem 0; font-size: 0.95rem; color: var(--text-leise); border-top: 1px solid var(--linie); }
+.fuss .huelle { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.fuss ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+
+/* Unterseiten */
+.text { padding: 3rem 0; }
+.text h2 { font-size: 1.35rem; margin-top: 2rem; }
+.platzhalter { background: #fff3c4; padding: 0 0.2em; }
+.kontakt .hinweis { color: #fff; }
