@@ -7,7 +7,7 @@
   <meta name="description" content="Wir prüfen den Kaufprozess Ihres Onlineshops nach WCAG 2.1 AA und dem Barrierefreiheitsstärkungsgesetz (BFSG): verständlicher Bericht, konkrete Lösungen, Festpreise.">
   <link rel="canonical" href="https://bfsg-checkup.de/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="schrift/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="schrift/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="menue.js" defer></script>
   <meta property="og:title" content="BFSG-Check für Onlineshops">
@@ -22,7 +22,7 @@
   <header class="kopf">
     <div class="huelle">
       <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
-        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#1b5e3b"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#f5b400" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#f5b400" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#1e3a8a"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#e6a817" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#e6a817" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>bfsg-<span class="hl">checkup</span><span class="tld">.de</span></span>
       </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
@@ -100,8 +100,24 @@
             <p>Gute Kontraste, klare Formulare und Tastaturbedienung helfen nicht nur Menschen mit Behinderung, sondern machen das Einkaufen für alle leichter, besonders auf dem Handy.</p>
           </div>
         </div>
-        <div class="kasten">
-          <p><strong>Ein Overlay-Plugin reicht nicht.</strong> Widgets, die sich per Skript über den Shop legen, beheben die eigentlichen Fehler im Code meist nicht. Wir prüfen und verbessern den Shop selbst.</p>
+        <div class="vergleich">
+          <h3>Warum ein Overlay-Plugin nicht reicht</h3>
+          <div class="vergleich-spalten">
+            <div class="vergleich-nein">
+              <p class="vergleich-kopf"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg> Overlay-Plugin</p>
+              <ul>
+                <li>Legt sich per Skript über den Shop</li>
+                <li>Die Fehler im Code bleiben bestehen</li>
+              </ul>
+            </div>
+            <div class="vergleich-ja">
+              <p class="vergleich-kopf"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Unsere Prüfung</p>
+              <ul>
+                <li>Findet die Ursachen im Code</li>
+                <li>Behebt sie direkt im Shop, dauerhaft</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
