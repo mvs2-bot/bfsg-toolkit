@@ -348,7 +348,12 @@ p { margin: 0 0 0.9rem; }
 .preis { font-size: 1.75rem; font-weight: 800; margin: 0.15rem 0 0.6rem; color: var(--akzent-tief); }
 .preis small { font-size: 0.95rem; font-weight: 400; color: var(--text-leise); }
 .karte ul { padding-left: 1.2rem; margin: 0 0 0.9rem; }
-.karte-hervor { border: 2px solid var(--akzent); box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15); position: relative; }
+/* Ausgewähltes Paket: dunkler Rahmen, per Klick wählbar (menue.js) */
+#pakete .karte { border-width: 2px; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+#pakete .gewaehlt { border-color: var(--akzent); box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15); }
+#pakete .waehlbar .karte { cursor: pointer; }
+#pakete .waehlbar .karte:not(.gewaehlt):hover { border-color: #9aa8cf; }
+@media (prefers-reduced-motion: reduce) { #pakete .karte { transition: none; } }
 .etikett { font-size: 0.8rem; font-weight: 700; color: var(--akzent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
 .karte-hervor .etikett {
   display: inline-block;
@@ -431,6 +436,8 @@ section.kontakt {
 .platzhalter { background: #fff3c4; padding: 0 0.2em; }
 
 /* Hinweis "Bald verfügbar" vor dem offiziellen Start */
+.paket-wahl { font-weight: 700; background: rgba(255, 255, 255, 0.1); border-left: 4px solid var(--sonne); padding: 0.5rem 0.8rem; border-radius: 0 var(--radius-klein) var(--radius-klein) 0; }
+
 .bald { background: var(--sonne-hell); border-bottom: 1px solid #f0d48a; font-size: 0.925rem; }
 .bald p { margin: 0; padding: 0.6rem 0; color: var(--text); }
 .bald-marke {

@@ -1,4 +1,4 @@
-// Burger-Menü für schmale Bildschirme und Tageszähler seit Inkrafttreten des BFSG.
+// Burger-Menü für schmale Bildschirme, Tageszähler seit Inkrafttreten des BFSG und Paketauswahl.
 // Ohne Skript bleibt die Navigation einfach sichtbar.
 (function () {
   var kopf = document.querySelector('.kopf');
@@ -37,5 +37,37 @@
       tage.querySelector('strong').textContent = anzahl.toLocaleString('de-DE') + ' Tage';
       tage.querySelector('span').textContent = 'ist das BFSG in Kraft';
     }
+  }
+
+  // Paketauswahl: Klick auf ein Paket setzt den Rahmen und übernimmt das Paket in die Kontakt-E-Mail.
+  var raster = document.querySelector('#pakete .raster');
+  var mail = document.querySelector('[data-kontakt-mail]');
+  var hinweis = document.querySelector('[data-paket-hinweis]');
+  if (raster && mail) {
+    var pakete = raster.querySelectorAll('[data-paket]');
+    var mailBasis = mail.getAttribute('href');
+    raster.classList.add('waehlbar');
+
+    var waehle = function (karte) {
+      var name = karte.getAttribute('data-paket');
+      pakete.forEach(function (k) {
+        var an = k === karte;
+        k.classList.toggle('gewaehlt', an);
+        var knopf = k.querySelector('.knopf');
+        if (knopf) {
+          knopf.classList.toggle('knopf-sonne', an);
+          knopf.classList.toggle('knopf-neben', !an);
+        }
+      });
+      mail.setAttribute('href', mailBasis.replace(/subject=[^&]*/, 'subject=' + encodeURIComponent('Anfrage ' + name)));
+      if (hinweis) {
+        hinweis.textContent = 'Ihre Auswahl: ' + name + '. Wir nehmen das Paket in den Betreff Ihrer E-Mail auf.';
+        hinweis.hidden = false;
+      }
+    };
+
+    pakete.forEach(function (karte) {
+      karte.addEventListener('click', function () { waehle(karte); });
+    });
   }
 })();
