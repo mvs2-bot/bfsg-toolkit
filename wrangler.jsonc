@@ -4,5 +4,7 @@
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./website"
-  }
+  },
+  // nötig für Vorschau-Builds von Branches (npx wrangler preview)
+  "previews": {}
 }

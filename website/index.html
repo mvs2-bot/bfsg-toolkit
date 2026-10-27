@@ -7,6 +7,7 @@
   <meta name="description" content="Wir prüfen den Kaufprozess Ihres Onlineshops nach WCAG 2.1 AA und dem Barrierefreiheitsstärkungsgesetz (BFSG): verständlicher Bericht, konkrete Lösungen, Festpreise.">
   <link rel="canonical" href="https://bfsg-checkup.de/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="schrift/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="menue.js" defer></script>
   <meta property="og:title" content="BFSG-Check für Onlineshops">
@@ -21,7 +22,7 @@
   <header class="kopf">
     <div class="huelle">
       <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
-        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#1b5e3b"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#f5b400" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#f5b400" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#1e3a8a"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#e6a817" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#e6a817" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>bfsg-<span class="hl">checkup</span><span class="tld">.de</span></span>
       </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
@@ -50,7 +51,8 @@
 
   <main id="inhalt">
     <section class="held" aria-labelledby="titel">
-      <div class="huelle">
+      <div class="huelle held-raster">
+        <div>
         <p class="marker">Seit 28.06.2025 in Kraft: <a href="https://www.gesetze-im-internet.de/bfsg/">Barrierefreiheitsstärkungsgesetz</a></p>
         <h1 id="titel">Ist Ihr Onlineshop <span class="hl">barrierefrei</span> nach BFSG?</h1>
         <p class="einleitung">Wir prüfen Ihren Kaufprozess von der Startseite bis zum Checkout nach WCAG 2.1 AA. Sie bekommen einen verständlichen Bericht mit priorisierten Befunden und auf Wunsch die fertige Umsetzung. Alles zum Festpreis.</p>
@@ -63,6 +65,17 @@
           <li><strong>WCAG 2.1</strong> Stufe AA, Scan und Handprüfung</li>
           <li><strong>390 €</strong> Festpreis für den Quick-Check</li>
         </ul>
+        </div>
+        <figure class="befund">
+          <figcaption>Auszug aus einem Bericht</figcaption>
+          <p class="befund-kopf"><span class="stufe">Hohe Priorität</span> <span>WCAG 1.3.1 und 3.3.2</span></p>
+          <p class="befund-titel">Eingabefeld „E-Mail“ im Checkout hat keine Beschriftung</p>
+          <dl>
+            <dt>Problem</dt><dd>Screenreader lesen nur „Eingabefeld“ vor. Blinde Kundschaft weiß nicht, was einzutragen ist.</dd>
+            <dt>Lösung</dt><dd>Sichtbares <code>&lt;label&gt;</code> mit dem Feld verknüpfen.</dd>
+          </dl>
+          <p class="befund-fuss"><a href="beispielbericht.pdf">Ganzen Beispielbericht ansehen (PDF, 170 KB)</a></p>
+        </figure>
       </div>
     </section>
 
@@ -87,8 +100,24 @@
             <p>Gute Kontraste, klare Formulare und Tastaturbedienung helfen nicht nur Menschen mit Behinderung, sondern machen das Einkaufen für alle leichter, besonders auf dem Handy.</p>
           </div>
         </div>
-        <div class="kasten">
-          <p><strong>Ein Overlay-Plugin reicht nicht.</strong> Widgets, die sich per Skript über den Shop legen, beheben die eigentlichen Fehler im Code meist nicht. Wir prüfen und verbessern den Shop selbst.</p>
+        <div class="vergleich">
+          <h3>Warum ein Overlay-Plugin nicht reicht</h3>
+          <div class="vergleich-spalten">
+            <div class="vergleich-nein">
+              <p class="vergleich-kopf"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg> Overlay-Plugin</p>
+              <ul>
+                <li>Legt sich per Skript über den Shop</li>
+                <li>Die Fehler im Code bleiben bestehen</li>
+              </ul>
+            </div>
+            <div class="vergleich-ja">
+              <p class="vergleich-kopf"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Unsere Prüfung</p>
+              <ul>
+                <li>Findet die Ursachen im Code</li>
+                <li>Behebt sie direkt im Shop, dauerhaft</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -115,7 +144,7 @@
             <p>Auf Wunsch setzen wir die Lösungen um oder liefern sie Ihrer Agentur zu. Danach prüfen wir erneut und erstellen Ihre Erklärung zur Barrierefreiheit.</p>
           </li>
         </ol>
-        <p class="hinweis"><a href="beispielbericht.pdf">Beispielbericht ansehen (PDF, 170 KB)</a>, erstellt für einen absichtlich fehlerhaften Demo-Shop.</p>
+        <p class="hinweis"><a class="knopf knopf-neben" href="beispielbericht.pdf">Beispielbericht ansehen (PDF, 170 KB)</a> <span>Erstellt für einen absichtlich fehlerhaften Demo-Shop.</span></p>
       </div>
     </section>
 
@@ -137,6 +166,7 @@
               <li>30 Minuten Besprechung per Video</li>
             </ul>
             <p>Fertig in 5 Werktagen.</p>
+            <a class="knopf knopf-neben" href="#kontakt">Quick-Check anfragen</a>
           </div>
           <div class="karte karte-hervor">
             <p class="etikett">Empfohlen</p>
@@ -150,6 +180,7 @@
               <li>Erklärung zur Barrierefreiheit für Ihren Shop</li>
             </ul>
             <p>Festpreis nach dem Quick-Check, je nach Shopgröße.</p>
+            <a class="knopf knopf-sonne" href="#kontakt">Fix-Paket anfragen</a>
           </div>
           <div class="karte">
             <p class="etikett">Dauerhaft</p>
@@ -161,6 +192,7 @@
               <li>Alternativtexte für neue Produkte</li>
               <li>Monatlich kündbar</li>
             </ul>
+            <a class="knopf knopf-neben" href="#kontakt">Monitoring anfragen</a>
           </div>
         </div>
         <p class="hinweis">Unsere Leistung ist eine technische Prüfung nach WCAG 2.1 AA und keine Rechtsberatung. Für rechtliche Fragen wenden Sie sich bitte an eine Anwaltskanzlei.</p>
