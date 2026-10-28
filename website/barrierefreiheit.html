@@ -10,30 +10,33 @@
 </head>
 <body>
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
-  <header class="kopf">
-    <div class="huelle">
-      <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
-        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="9" fill="#1e3a8a"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M24.4 24.4L30.5 30.5" stroke="#e6a817" stroke-width="4.2" stroke-linecap="round"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#e6a817" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>bfsg-<span class="hl">checkup</span><span class="tld">.de</span></span>
-      </a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
-        <span class="nur-vorlesen">Menü</span>
-        <svg class="auf" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        <svg class="zu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-      </button>
-      <nav class="navi" id="menue" aria-label="Hauptnavigation">
-        <ul>
-          <li><a href="./#warum">Warum</a></li>
-          <li><a href="./#ablauf">Ablauf</a></li>
-          <li><a href="./#pakete">Pakete</a></li>
-          <li><a href="./#faq">Fragen</a></li>
-          <li><a class="navi-cta" href="./#kontakt">Erst-Befund anfordern</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="bogen">
+    <div class="rahmen">
+      <div class="felder" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+      <div class="felder-l" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
 
-  <main id="inhalt" class="text">
+      <header class="kopf">
+        <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
+          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="1" y="1" width="38" height="38" fill="none" stroke="#14171d" stroke-width="2"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#14171d" stroke-width="2.6"/><path d="M24.4 24.4L31 31" stroke="#14171d" stroke-width="3.6" stroke-linecap="square"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#b0172f" stroke-width="2.4" stroke-linecap="square"/></svg>
+          <span>bfsg-checkup.de</span>
+        </a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
+          <span class="nur-vorlesen">Menü</span>
+          <svg class="auf" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+          <svg class="zu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+        </button>
+        <nav class="navi" id="menue" aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="./#warum">Warum</a></li>
+            <li><a href="./#ablauf">Ablauf</a></li>
+            <li><a href="./#pakete">Pakete</a></li>
+            <li><a href="./#faq">Fragen</a></li>
+            <li><a class="knopf" href="./#kontakt">Erst-Befund anfordern</a></li>
+          </ul>
+        </nav>
+      </header>
+
+        <main id="inhalt" class="text">
     <div class="huelle schmal">
       <h1>Erklärung zur Barrierefreiheit</h1>
       <p>Wer Barrierefreiheit prüft, sollte selbst barrierefrei sein. Diese Website soll die Anforderungen der WCAG 2.1 in Stufe AA erfüllen.</p>
@@ -57,17 +60,11 @@
     </div>
   </main>
 
-  <footer class="fuss">
-    <div class="huelle">
-      <p>© 2026 bfsg-checkup.de</p>
-      <nav aria-label="Rechtliches">
-        <ul>
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="datenschutz.html">Datenschutz</a></li>
-          <li><a href="barrierefreiheit.html" aria-current="page">Barrierefreiheit</a></li>
-        </ul>
-      </nav>
+      <footer class="fuss">
+        <span>© 2026 bfsg-checkup.de</span>
+        <nav aria-label="Rechtliches"><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="barrierefreiheit.html" aria-current="page">Barrierefreiheit</a></li></ul></nav>
+      </footer>
     </div>
-  </footer>
+  </div>
 </body>
 </html>
