@@ -1,4 +1,4 @@
-// Burger-Menü für schmale Bildschirme, Tageszähler seit Inkrafttreten des BFSG und Paketauswahl.
+// Burger-Menü für schmale Bildschirme, Tageszähler seit Inkrafttreten des BFSG, Paketauswahl und Befund-Nummern in Fig. 1.
 // Ohne Skript bleibt die Navigation einfach sichtbar.
 (function () {
   var kopf = document.querySelector('.kopf');
@@ -40,7 +40,7 @@
   }
 
   // Paketauswahl: Klick auf ein Paket setzt den Rahmen und übernimmt das Paket in die Kontakt-E-Mail.
-  var raster = document.querySelector('#pakete .raster');
+  var raster = document.querySelector('#pakete [data-pakete]');
   var mail = document.querySelector('[data-kontakt-mail]');
   var hinweis = document.querySelector('[data-paket-hinweis]');
   if (raster && mail) {
@@ -54,10 +54,7 @@
         var an = k === karte;
         k.classList.toggle('gewaehlt', an);
         var knopf = k.querySelector('.knopf');
-        if (knopf) {
-          knopf.classList.toggle('knopf-sonne', an);
-          knopf.classList.toggle('knopf-neben', !an);
-        }
+        if (knopf) knopf.classList.toggle('knopf-leer', !an);
       });
       mail.setAttribute('href', mailBasis.replace(/subject=[^&]*/, 'subject=' + encodeURIComponent('Anfrage ' + name)));
       if (hinweis) {
@@ -69,5 +66,29 @@
     pakete.forEach(function (karte) {
       karte.addEventListener('click', function () { waehle(karte); });
     });
+  }
+
+  // Fig. 1: Befund-Nummer wählen oder darauf zeigen, die Stelle in der Zeichnung wird hervorgehoben.
+  var befundKnoepfe = document.querySelectorAll('[data-zeige]');
+  var teile = document.querySelectorAll('.zeichnung [data-teil]');
+  if (befundKnoepfe.length && teile.length) {
+    var markiere = function (nr) {
+      teile.forEach(function (t) { t.classList.toggle('aktiv', t.getAttribute('data-teil') === nr); });
+    };
+    var zeige = function (nr) {
+      markiere(nr);
+      befundKnoepfe.forEach(function (k) { k.setAttribute('aria-pressed', String(k.getAttribute('data-zeige') === nr)); });
+    };
+    var gedrueckt = function () {
+      var k = document.querySelector('[data-zeige][aria-pressed="true"]');
+      return k ? k.getAttribute('data-zeige') : '';
+    };
+    befundKnoepfe.forEach(function (k) {
+      var nr = k.getAttribute('data-zeige');
+      k.addEventListener('click', function () { zeige(gedrueckt() === nr ? '' : nr); });
+      k.addEventListener('mouseenter', function () { markiere(nr); });
+      k.addEventListener('mouseleave', function () { markiere(gedrueckt()); });
+    });
+    zeige('1');
   }
 })();
