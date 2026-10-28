@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Entwurf B: Leitsystem | bfsg-checkup.de</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../schrift/atkinson-hyperlegible-next-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Atkinson Next"; src: url("../schrift/atkinson-hyperlegible-next-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Atkinson Next"; src: url("../schrift/atkinson-hyperlegible-next-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Atkinson Next"; src: url("../schrift/atkinson-hyperlegible-next-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+    :root {
+      --gelb: #ffd100;
+      --gelb-tief: #f2c200;
+      --schwarz: #131519;
+      --tafel: #1d2026;
+      --weiss: #ffffff;
+      --grau: #464b55;
+      --linie: #d5d8de;
+      --rot: #c8102e;
+      --schrift: "Atkinson Next", "Verdana", sans-serif;
+      --breite: 1240px;
+      --rand: clamp(16px, 4vw, 48px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+    body { margin: 0; background: var(--weiss); color: var(--schwarz); font: 400 1.0625rem/1.6 var(--schrift); }
+    ::selection { background: var(--schwarz); color: var(--gelb); }
+    a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 2px; }
+    :focus-visible { outline: 4px solid var(--schwarz); outline-offset: 3px; box-shadow: 0 0 0 7px var(--gelb); }
+    h1, h2, h3 { margin: 0; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
+    p { margin: 0 0 1em; }
+    .huelle { max-width: var(--breite); margin: 0 auto; padding: 0 var(--rand); }
+    .vorlesen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .sprung { position: absolute; left: 1rem; top: -4rem; background: var(--schwarz); color: var(--gelb); padding: .6rem 1rem; z-index: 10; }
+    .sprung:focus { top: 1rem; }
+    .pfeil { width: 1em; height: 1em; flex: none; }
+
+    /* Kopf: schwarzes Schild */
+    .kopf { background: var(--schwarz); color: var(--weiss); }
+    .kopf .huelle { display: flex; align-items: center; justify-content: space-between; gap: .75rem 2rem; flex-wrap: wrap; min-height: 72px; }
+    .marke { display: inline-flex; align-items: center; gap: .7rem; font-weight: 800; font-size: 1.3rem; text-decoration: none; padding: .5rem 0; }
+    .marke svg { width: 36px; height: 36px; }
+    .navi ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; margin: 0; padding: 0; font-weight: 700; }
+    .navi a { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; text-decoration: none; }
+    .navi a:hover { text-decoration: underline; }
+    .navi .pfeil { color: var(--gelb); }
+
+    /* Gelbe Fläche */
+    .held { background: var(--gelb); padding: clamp(2rem, 4.5vw, 3.5rem) 0 clamp(2.5rem, 5vw, 4rem); }
+    .bald { display: inline-flex; align-items: center; gap: .6rem; background: var(--schwarz); color: var(--weiss); padding: .45rem .9rem; font-weight: 700; font-size: .95rem; margin-bottom: 1.5rem; }
+    .bald::before { content: ""; width: .65rem; height: .65rem; background: var(--gelb); border-radius: 50%; }
+    h1 { font-size: clamp(2.7rem, 6.4vw, 5.2rem); max-width: 13ch; }
+    .held-unter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; align-items: end; margin-top: 1.75rem; }
+    .einleitung { font-size: clamp(1.1rem, 1.6vw, 1.3rem); max-width: 36em; margin: 0; }
+    .schild { display: inline-flex; align-items: center; gap: 1rem; background: var(--schwarz); color: var(--weiss); padding: 1.05rem 1.4rem; min-height: 56px; font-weight: 800; font-size: 1.15rem; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+    .schild .pfeil { color: var(--gelb); width: 1.4em; height: 1.4em; transition: transform .2s ease; }
+    .schild:hover .pfeil { transform: translateX(4px); }
+    .schild-hell { background: var(--weiss); color: var(--schwarz); }
+    .schild-hell .pfeil { color: var(--schwarz); }
+    .knoepfe { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+    /* Die Linie: Kaufprozess als Strecke */
+    .strecke { margin-top: clamp(2rem, 4vw, 3rem); }
+    .strecke-kopf { display: flex; justify-content: space-between; gap: .5rem 1.5rem; flex-wrap: wrap; align-items: baseline; margin-bottom: 1.25rem; }
+    .strecke-kopf h2 { font-size: 1.35rem; letter-spacing: -.01em; }
+    .strecke-kopf p { margin: 0; font-size: .95rem; }
+    .halte { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: relative; }
+    .halte::before { content: ""; position: absolute; left: 10%; right: 10%; top: 27px; height: 10px; background: var(--schwarz); }
+    .halte li { position: relative; text-align: center; }
+    .halt { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: .55rem; width: 100%; padding: 0 .25rem .5rem; }
+    .halt .punkt { width: 64px; height: 64px; border-radius: 50%; background: var(--weiss); border: 10px solid var(--schwarz); display: grid; place-items: center; font-weight: 800; font-size: 1.05rem; transition: transform .2s ease, background .2s ease; position: relative; z-index: 1; }
+    .halt .text { display: flex; flex-direction: column; align-items: inherit; }
+    .halt .name { font-weight: 800; font-size: clamp(.95rem, 1.6vw, 1.2rem); }
+    .halt .anzahl { font-size: .9rem; }
+    .halt:hover .punkt { transform: scale(1.08); }
+    .halt[aria-selected="true"] .punkt { background: var(--schwarz); color: var(--gelb); }
+    .halt[aria-selected="true"] .name { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .25em; }
+    .halt:focus-visible { outline: 4px solid var(--schwarz); outline-offset: 2px; box-shadow: none; }
+
+    .tafel { margin-top: 1.25rem; background: var(--tafel); color: var(--weiss); padding: clamp(1.25rem, 3vw, 2rem); display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 1rem 2rem; min-height: 11rem; }
+    .tafel h3 { color: var(--gelb); font-size: 1.6rem; }
+    .tafel h3 small { display: block; color: #c9ccd2; font-size: .9rem; font-weight: 400; margin-top: .4rem; letter-spacing: 0; }
+    .tafel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+    .tafel li { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: .75rem; }
+    .tafel li svg { width: 2.25rem; height: 2.25rem; }
+    .tafel strong { display: block; font-size: 1.15rem; }
+    .tafel .loesung { color: #d9dce1; }
+    .tafel .beleg { color: #b9bdc5; font-size: .9rem; }
+
+    /* Abschnitte */
+    .abschnitt { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+    .abschnitt h2 { font-size: clamp(2rem, 4.4vw, 3.4rem); max-width: 18ch; margin-bottom: clamp(1.75rem, 3vw, 2.75rem); }
+    .schilder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
+    .schilder > div { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 1.1rem; align-items: start; }
+    .piktogramm { width: 72px; height: 72px; background: var(--schwarz); color: var(--gelb); display: grid; place-items: center; }
+    .piktogramm svg { width: 44px; height: 44px; }
+    .schilder h3 { font-size: 1.3rem; margin: .2rem 0 .5rem; }
+    .schilder p { color: var(--grau); margin: 0; }
+
+    .umleitung { margin-top: clamp(3rem, 6vw, 4.5rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border: 4px solid var(--schwarz); }
+    .umleitung > div { padding: clamp(1.25rem, 3vw, 2rem); }
+    .umleitung h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); margin-bottom: .75rem; display: flex; gap: .75rem; align-items: center; }
+    .umleitung h3 svg { width: 2.2rem; height: 2.2rem; flex: none; }
+    .umleitung ul { margin: 0; padding-left: 1.2rem; }
+    .umleitung .nein { background: #f1f2f4; }
+    .umleitung .ja { background: var(--gelb); }
+    .umleitung-titel { grid-column: 1 / -1; background: var(--schwarz); color: var(--weiss); font-weight: 800; font-size: 1.15rem; padding: .8rem clamp(1.25rem, 3vw, 2rem) !important; }
+
+    .route { list-style: none; margin: 0; padding: 0; position: relative; max-width: 50rem; }
+    .route::before { content: ""; position: absolute; left: 23px; top: 10px; bottom: 10px; width: 10px; background: var(--schwarz); }
+    .route li { position: relative; padding: 0 0 2.25rem 5rem; }
+    .route li:last-child { padding-bottom: 0; }
+    .route .stopp { position: absolute; left: 0; top: 0; width: 56px; height: 56px; border-radius: 50%; background: var(--gelb); border: 8px solid var(--schwarz); display: grid; place-items: center; font-weight: 800; font-size: 1.15rem; }
+    .route h3 { font-size: 1.45rem; padding-top: .7rem; margin-bottom: .35rem; }
+    .route p { color: var(--grau); margin: 0; max-width: 40em; }
+    .zusatz { margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; color: var(--grau); }
+    .zusatz .schild { font-size: 1rem; padding: .85rem 1.15rem; }
+
+    /* Abfahrtstafel für Pakete */
+    .pakete { background: var(--schwarz); color: var(--weiss); }
+    .pakete h2 { color: var(--gelb); }
+    .pakete .bald { background: var(--gelb); color: var(--schwarz); }
+    .pakete .bald::before { background: var(--schwarz); }
+    .anzeige { border-top: 2px solid #3a3f48; }
+    .zeile { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) minmax(0, 12rem) auto; gap: 1rem 2rem; align-items: start; padding: 1.75rem 0; border-bottom: 2px solid #3a3f48; }
+    .zeile h3 { font-size: 1.7rem; color: var(--weiss); }
+    .zeile h3 small { display: block; font-size: .95rem; font-weight: 400; color: #c9ccd2; margin-top: .35rem; letter-spacing: 0; }
+    .zeile ul { margin: 0; padding-left: 1.1rem; color: #e1e3e7; }
+    .zeile li { margin-bottom: .25rem; }
+    .zeile .preis { font-size: 1.9rem; font-weight: 800; color: var(--gelb); line-height: 1; margin: 0; }
+    .zeile .preis small { display: block; font-size: .9rem; font-weight: 400; color: #c9ccd2; margin-top: .4rem; }
+    .zeile .schild { background: var(--weiss); color: var(--schwarz); font-size: 1rem; padding: .8rem 1.1rem; min-height: 48px; }
+    .zeile .schild .pfeil { color: var(--schwarz); }
+    .zeile-hervor { background: #262a31; margin: 0 calc(var(--rand) * -.5); padding-left: calc(var(--rand) * .5); padding-right: calc(var(--rand) * .5); box-shadow: inset 6px 0 0 var(--gelb); }
+    .zeile-hervor .schild { background: var(--gelb); }
+    .pakete .hinweis { color: #c9ccd2; font-size: .95rem; margin-top: 1.5rem; max-width: 60em; }
+
+    .faq { max-width: 52rem; border-top: 4px solid var(--schwarz); }
+    .faq details { border-bottom: 2px solid var(--linie); }
+    .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.15rem 0; font-weight: 800; font-size: 1.2rem; min-height: 44px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { width: 1.6rem; height: 1.6rem; flex: none; transition: transform .2s ease; }
+    .faq details[open] summary svg { transform: rotate(90deg); }
+    .faq details p { color: var(--grau); max-width: 65ch; }
+
+    .kontakt { background: var(--gelb); }
+    .kontakt .huelle { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 4rem; align-items: center; }
+    .kontakt h2 { margin-bottom: 1rem; }
+    .kontakt ol { margin: 0; padding-left: 1.3rem; font-size: 1.1rem; }
+    .kontakt .schild { width: 100%; justify-content: space-between; font-size: clamp(1.05rem, 2vw, 1.35rem); padding: 1.35rem 1.5rem; }
+    .kontakt .klein { font-size: .95rem; margin-top: 1rem; }
+
+    .fuss { background: var(--schwarz); color: var(--weiss); padding: 1.25rem 0; }
+    .fuss .huelle { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1.5rem; }
+    .fuss ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0; padding: 0; }
+    .fuss a { display: inline-block; padding: .4rem 0; }
+
+    @media (max-width: 900px) {
+      .held-unter, .kontakt .huelle, .umleitung { grid-template-columns: 1fr; }
+      .schilder { grid-template-columns: 1fr; }
+      .tafel { grid-template-columns: 1fr; }
+      .zeile { grid-template-columns: minmax(0, 1fr) auto; }
+      .zeile ul { grid-column: 1 / -1; grid-row: 2; }
+      .zeile .schild { grid-column: 1 / -1; justify-self: start; }
+    }
+    @media (max-width: 640px) {
+      .halte { grid-template-columns: 1fr; gap: .25rem; }
+      .halte::before { left: 27px; right: auto; top: 20px; bottom: 20px; width: 10px; height: auto; }
+      .halt { flex-direction: row; text-align: left; gap: 1rem; padding: .25rem 0; }
+      .halt .punkt { width: 64px; height: 64px; }
+      .halt .text { display: flex; flex-direction: column; }
+      .navi ul { gap: 0 1.1rem; }
+      .zeile { grid-template-columns: 1fr; }
+      .zeile ul { grid-row: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="pfeil" viewBox="0 0 24 24"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
+    <symbol id="hindernis" viewBox="0 0 36 36"><rect width="36" height="36" fill="#ffd100"/><path d="M18 7L31 29H5L18 7z" fill="none" stroke="#131519" stroke-width="3" stroke-linejoin="round"/><path d="M18 15v6.5M18 24.5v1" stroke="#131519" stroke-width="3" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <header class="kopf">
+    <div class="huelle">
+      <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" fill="#ffd100"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#131519" stroke-width="3.4"/><path d="M24.4 24.4L31 31" stroke="#131519" stroke-width="4.4" stroke-linecap="square"/></svg>
+        <span>bfsg-checkup.de</span>
+      </a>
+      <nav class="navi" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#warum"><svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg>Warum</a></li>
+          <li><a href="#ablauf"><svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg>Ablauf</a></li>
+          <li><a href="#pakete"><svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg>Pakete</a></li>
+          <li><a href="#faq"><svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg>Fragen</a></li>
+          <li><a href="#kontakt"><svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg>Erst-Befund</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <section class="held" aria-labelledby="titel">
+      <div class="huelle">
+        <p class="bald">Bald verfügbar: Schreiben Sie uns gern schon jetzt.</p>
+        <h1 id="titel">Ist Ihr Onlineshop barrierefrei nach BFSG?</h1>
+        <div class="held-unter">
+          <p class="einleitung">Wir gehen den Weg Ihrer Kundschaft von der Startseite bis zur Kasse und prüfen jede Station nach WCAG 2.1 AA. Sie erfahren, wo jemand hängen bleibt und wie Sie das beheben. Zum Festpreis.</p>
+          <div class="knoepfe">
+            <a class="schild" href="#kontakt">Kostenlosen Erst-Befund anfordern <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg></a>
+            <a class="schild schild-hell" href="#pakete">Pakete und Preise <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg></a>
+          </div>
+        </div>
+
+        <div class="strecke">
+          <div class="strecke-kopf">
+            <h2 id="strecke-titel">Der Weg durch einen Beispielshop</h2>
+            <p>Befunde aus unserem absichtlich fehlerhaften Demo-Shop. Wählen Sie eine Station.</p>
+          </div>
+          <ol class="halte" role="tablist" aria-labelledby="strecke-titel">
+            <li role="presentation"><button class="halt" role="tab" id="t-start" aria-controls="tafel" aria-selected="false" data-halt="start"><span class="punkt">1</span><span class="text"><span class="name">Startseite</span><span class="anzahl">1 Barriere</span></span></button></li>
+            <li role="presentation"><button class="halt" role="tab" id="t-suche" aria-controls="tafel" aria-selected="false" data-halt="suche" tabindex="-1"><span class="punkt">1</span><span class="text"><span class="name">Suche</span><span class="anzahl">1 Barriere</span></span></button></li>
+            <li role="presentation"><button class="halt" role="tab" id="t-produkt" aria-controls="tafel" aria-selected="false" data-halt="produkt" tabindex="-1"><span class="punkt">2</span><span class="text"><span class="name">Produkt</span><span class="anzahl">2 Barrieren</span></span></button></li>
+            <li role="presentation"><button class="halt" role="tab" id="t-korb" aria-controls="tafel" aria-selected="false" data-halt="korb" tabindex="-1"><span class="punkt">1</span><span class="text"><span class="name">Warenkorb</span><span class="anzahl">1 Barriere</span></span></button></li>
+            <li role="presentation"><button class="halt" role="tab" id="t-kasse" aria-controls="tafel" aria-selected="true" data-halt="kasse"><span class="punkt">2</span><span class="text"><span class="name">Kasse</span><span class="anzahl">2 Barrieren</span></span></button></li>
+          </ol>
+          <div class="tafel" id="tafel" role="tabpanel" aria-labelledby="t-kasse" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt" aria-labelledby="warum">
+      <div class="huelle">
+        <h2 id="warum">Warum das Thema jetzt wichtig ist</h2>
+        <div class="schilder">
+          <div>
+            <span class="piktogramm"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5.5C14.3 4.6 13.3 4 12 4c-1.9 0-3.3 1.2-3.3 2.8 0 3.6 6.8 2.7 6.8 6.6 0 1-.6 1.9-1.5 2.4M9 18.5c.7.9 1.7 1.5 3 1.5 1.9 0 3.3-1.2 3.3-2.8 0-3.6-6.8-2.7-6.8-6.6 0-1 .6-1.9 1.5-2.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+            <div><h3>Pflicht für viele Shops</h3><p>Seit dem 28. Juni 2025 müssen Onlineshops für Verbraucher barrierefrei sein. Ausgenommen sind nur Kleinstunternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz.</p></div>
+          </div>
+          <div>
+            <span class="piktogramm"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5L2.8 19.5h18.4L12 3.5zM12 10v4.5M12 17.2v.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><h3>Behörden und Abmahnungen</h3><p>Die Marktüberwachung kann Mängel beanstanden und Bußgelder verhängen. Dazu kommen Abmahnungen von Mitbewerbern und Verbänden.</p></div>
+          </div>
+          <div>
+            <span class="piktogramm"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.3a3.5 3.5 0 0 1 0 6.4M18 14.5c2 .8 3.5 2.8 3.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+            <div><h3>Mehr Kundschaft</h3><p>Gute Kontraste, klare Formulare und Tastaturbedienung machen das Einkaufen für alle leichter, besonders auf dem Handy.</p></div>
+          </div>
+        </div>
+
+        <div class="umleitung">
+          <p class="umleitung-titel">Warum ein Overlay-Plugin nicht reicht</p>
+          <div class="nein">
+            <h3><svg viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" fill="#131519"/><path d="M11 11l14 14M25 11L11 25" stroke="#fff" stroke-width="3.4" stroke-linecap="square"/></svg>Overlay-Plugin</h3>
+            <ul><li>Legt sich per Skript über den Shop</li><li>Die Fehler im Code bleiben bestehen</li></ul>
+          </div>
+          <div class="ja">
+            <h3><svg viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" fill="#131519"/><path d="M9.5 18.5l6 6L27 12" fill="none" stroke="#ffd100" stroke-width="3.4" stroke-linecap="square"/></svg>Unsere Prüfung</h3>
+            <ul><li>Findet die Ursachen im Code</li><li>Behebt sie direkt im Shop, dauerhaft</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt" id="ablauf" aria-labelledby="ablauf-titel" style="padding-top:0">
+      <div class="huelle">
+        <h2 id="ablauf-titel">So läuft der Check ab</h2>
+        <ol class="route">
+          <li><span class="stopp" aria-hidden="true">1</span><h3>Automatischer Scan</h3><p>Wir testen die wichtigen Seiten Ihres Kaufprozesses gegen alle automatisch prüfbaren Kriterien der WCAG 2.1 AA, dazu Tastatur und Handy-Ansicht.</p></li>
+          <li><span class="stopp" aria-hidden="true">2</span><h3>Prüfung von Hand</h3><p>Automatische Tests finden nur einen Teil der Barrieren. Deshalb prüfen wir nach fester Checkliste mit Tastatur und Screenreader, vom Suchen bis zum Bezahlen.</p></li>
+          <li><span class="stopp" aria-hidden="true">3</span><h3>Verständlicher Bericht</h3><p>Ein PDF, sortiert nach Priorität: Was ist das Problem, wo tritt es auf, wie dringend ist es und wie wird es behoben.</p></li>
+          <li><span class="stopp" aria-hidden="true">4</span><h3>Umsetzung</h3><p>Auf Wunsch setzen wir die Lösungen um oder liefern sie Ihrer Agentur zu. Danach prüfen wir erneut und erstellen Ihre Erklärung zur Barrierefreiheit.</p></li>
+        </ol>
+        <p class="zusatz"><a class="schild" href="../../beispielbericht.pdf">Beispielbericht ansehen (PDF, 170 KB) <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg></a> <span>Erstellt für einen absichtlich fehlerhaften Demo-Shop.</span></p>
+      </div>
+    </section>
+
+    <section class="abschnitt pakete" id="pakete" aria-labelledby="pakete-titel">
+      <div class="huelle">
+        <h2 id="pakete-titel">Pakete zum Festpreis</h2>
+        <p class="bald">Bald verfügbar: Buchungen sind in Kürze möglich.</p>
+        <div class="anzeige">
+          <div class="zeile">
+            <h3>Quick-Check<small>Fertig in 5 Werktagen</small></h3>
+            <ul><li>Scan von bis zu 6 Seiten des Kaufprozesses</li><li>Prüfung von Hand nach Checkliste</li><li>Bericht als PDF mit den 10 wichtigsten Befunden</li><li>30 Minuten Besprechung per Video</li></ul>
+            <p class="preis">390 €<small>einmalig</small></p>
+            <a class="schild" href="#kontakt">Anfragen <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg><span class="vorlesen">: Quick-Check</span></a>
+          </div>
+          <div class="zeile zeile-hervor">
+            <h3>Fix-Paket<small>Empfohlen</small></h3>
+            <ul><li>Alles aus dem Quick-Check, mit allen Befunden</li><li>Umsetzung der Lösungen im Theme oder Template</li><li>Alternativtexte für Produktbilder</li><li>Erneute Prüfung nach der Umsetzung</li><li>Erklärung zur Barrierefreiheit für Ihren Shop</li></ul>
+            <p class="preis">ab 1.500 €<small>Festpreis nach dem Quick-Check</small></p>
+            <a class="schild" href="#kontakt">Anfragen <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg><span class="vorlesen">: Fix-Paket</span></a>
+          </div>
+          <div class="zeile">
+            <h3>Monitoring<small>Monatlich kündbar</small></h3>
+            <ul><li>Monatlicher Scan Ihrer wichtigsten Seiten</li><li>Kurzer Bericht mit neuen Befunden</li><li>Alternativtexte für neue Produkte</li></ul>
+            <p class="preis">ab 49 €<small>pro Monat</small></p>
+            <a class="schild" href="#kontakt">Anfragen <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg><span class="vorlesen">: Monitoring</span></a>
+          </div>
+        </div>
+        <p class="hinweis">Unsere Leistung ist eine technische Prüfung nach WCAG 2.1 AA und keine Rechtsberatung. Für rechtliche Fragen wenden Sie sich bitte an eine Anwaltskanzlei.</p>
+      </div>
+    </section>
+
+    <section class="abschnitt" id="faq" aria-labelledby="faq-titel">
+      <div class="huelle">
+        <h2 id="faq-titel">Häufige Fragen</h2>
+        <div class="faq">
+          <details><summary>Ist mein Shop vom BFSG betroffen?<svg aria-hidden="true"><use href="#pfeil"/></svg></summary><p>Betroffen sind Onlineshops, die an Verbraucher verkaufen. Ausgenommen sind Kleinstunternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz oder Jahresbilanzsumme. Reine B2B-Shops fallen in der Regel nicht darunter. Im Zweifel klärt eine Anwaltskanzlei verbindlich, ob Ihr Shop betroffen ist.</p></details>
+          <details><summary>Was ist der kostenlose Erst-Befund?<svg aria-hidden="true"><use href="#pfeil"/></svg></summary><p>Sie schicken uns die Adresse Ihres Shops. Wir scannen die Startseite und eine Produktseite und nennen Ihnen per E-Mail drei konkrete Befunde mit kurzer Erklärung. Das ist unverbindlich und kostet nichts.</p></details>
+          <details><summary>Reicht ein Barrierefreiheits-Plugin oder Overlay?<svg aria-hidden="true"><use href="#pfeil"/></svg></summary><p>In den meisten Fällen nicht. Solche Werkzeuge ändern die Darstellung, beheben aber selten die Ursachen im Code, etwa fehlende Beschriftungen von Formularfeldern.</p></details>
+          <details><summary>Welche Shopsysteme unterstützen Sie?<svg aria-hidden="true"><use href="#pfeil"/></svg></summary><p>Die Prüfung funktioniert mit jedem Shop, der im Browser läuft. Bei der Umsetzung arbeiten wir vor allem mit Shopify, Shopware und WooCommerce.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+      <div class="huelle">
+        <div>
+          <h2 id="kontakt-titel">Kostenlosen Erst-Befund anfordern</h2>
+          <ol><li>Adresse Ihres Shops nennen</li><li>Optional: Shopsystem und Ihre Fragen</li><li>Innerhalb von 2 Werktagen erhalten Sie drei konkrete Befunde</li></ol>
+        </div>
+        <div>
+          <a class="schild" href="mailto:kontakt@bfsg-checkup.de?subject=Kostenloser%20Erst-Befund">E-Mail an kontakt@bfsg-checkup.de <svg class="pfeil" aria-hidden="true"><use href="#pfeil"/></svg></a>
+          <p class="klein">Ihre Angaben verwenden wir nur, um Ihre Anfrage zu beantworten. Mehr dazu in der <a href="../../datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fuss">
+    <div class="huelle">
+      <span>© 2026 bfsg-checkup.de</span>
+      <nav aria-label="Rechtliches"><ul><li><a href="../../impressum.html">Impressum</a></li><li><a href="../../datenschutz.html">Datenschutz</a></li><li><a href="../../barrierefreiheit.html">Barrierefreiheit</a></li></ul></nav>
+    </div>
+  </footer>
+
+  <script>
+    // Stationen der Strecke: Befunde je Seite auf der Tafel zeigen (Tabs mit Pfeiltasten)
+    (function () {
+      var daten = {
+        start: { name: 'Startseite', befunde: [['Menü lässt sich nur mit der Maus öffnen', 'Wer die Tastatur nutzt, kommt nicht zu den Kategorien. Lösung: echter Knopf mit Tastaturbedienung.', 'Hohe Priorität, WCAG 2.1.1']] },
+        suche: { name: 'Suche', befunde: [['Suchvorschläge werden nicht vorgelesen', 'Screenreader merken nicht, dass Treffer erscheinen. Lösung: Statusmeldung für die Trefferzahl.', 'Mittlere Priorität, WCAG 4.1.3']] },
+        produkt: { name: 'Produktseite', befunde: [['Produktbild ohne Alternativtext', 'Blinde Kundschaft erfährt nicht, was abgebildet ist. Lösung: kurzer Alt-Text pro Bild.', 'Mittlere Priorität, WCAG 1.1.1'], ['Ausverkaufte Größen nur grau markiert', 'Die Information hängt allein an der Farbe. Lösung: Zusatz „ausverkauft“ im Text.', 'Mittlere Priorität, WCAG 1.4.1']] },
+        korb: { name: 'Warenkorb', befunde: [['Menge ändern ohne Rückmeldung', 'Nach dem Klick auf Plus passiert für Screenreader nichts. Lösung: neue Summe ansagen.', 'Mittlere Priorität, WCAG 4.1.3']] },
+        kasse: { name: 'Kasse', befunde: [['Feld „E-Mail“ hat keine Beschriftung', 'Screenreader sagen nur „Eingabefeld“. Lösung: sichtbares Label mit dem Feld verknüpfen.', 'Hohe Priorität, WCAG 1.3.1 und 3.3.2'], ['Knopf „Weiter“ ist kaum lesbar', 'Kontrast 1,9 : 1, nötig sind 4,5 : 1. Lösung: dunklere Schrift auf ruhigem Grund.', 'Hohe Priorität, WCAG 1.4.3']] }
+      };
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.halt'));
+      var tafel = document.getElementById('tafel');
+      function zeige(tab, fokus) {
+        tabs.forEach(function (t) { var an = t === tab; t.setAttribute('aria-selected', String(an)); t.tabIndex = an ? 0 : -1; });
+        var d = daten[tab.dataset.halt];
+        tafel.setAttribute('aria-labelledby', tab.id);
+        var html = '<h3>' + d.name + '<small>' + d.befunde.length + (d.befunde.length === 1 ? ' Barriere' : ' Barrieren') + ' im Demo-Shop</small></h3><ul>';
+        d.befunde.forEach(function (b) { html += '<li><svg viewBox="0 0 36 36" aria-hidden="true"><use href="#hindernis"/></svg><div><strong>' + b[0] + '</strong><span class="loesung">' + b[1] + '</span><br><span class="beleg">' + b[2] + '</span></div></li>'; });
+        tafel.innerHTML = html + '</ul>';
+        if (fokus) tab.focus();
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { zeige(t); });
+        t.addEventListener('keydown', function (e) {
+          var n = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+          if (e.key === 'Home') n = tabs[0];
+          if (e.key === 'End') n = tabs[tabs.length - 1];
+          if (n) { e.preventDefault(); zeige(n, true); }
+        });
+      });
+      zeige(tabs[tabs.length - 1]);
+    })();
+  </script>
+</body>
+</html>

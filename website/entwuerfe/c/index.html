@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Entwurf C: Plakat | bfsg-checkup.de</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../schrift/permanent-marker-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Permanent Marker"; src: url("../schrift/permanent-marker-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Figtree"; src: url("../schrift/figtree-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Figtree"; src: url("../schrift/figtree-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+    @font-face { font-family: "Figtree"; src: url("../schrift/figtree-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+    :root {
+      --papier: #ffffff;
+      --tinte: #1b1c1f;
+      --grau: #4a4c52;
+      --kobalt: #1f45b8;
+      --mohn: #c8321f;
+      --blatt: #1d7a3b;
+      --hell-kobalt: #e8edfb;
+      --hand: "Permanent Marker", "Comic Sans MS", cursive;
+      --text: "Figtree", "Segoe UI", Arial, sans-serif;
+      --breite: 1200px;
+      --rand: clamp(16px, 4vw, 48px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+    body { margin: 0; background: var(--papier); color: var(--tinte); font: 400 1.0625rem/1.6 var(--text); }
+    ::selection { background: var(--kobalt); color: #fff; }
+    a { color: var(--kobalt); text-underline-offset: .2em; text-decoration-thickness: 2px; }
+    :focus-visible { outline: 3px solid var(--kobalt); outline-offset: 4px; border-radius: 2px; }
+    h1, h2 { font-family: var(--hand); font-weight: 400; line-height: 1.08; margin: 0; letter-spacing: 0; text-wrap: balance; }
+    h3 { font-weight: 800; line-height: 1.2; margin: 0 0 .5rem; font-size: 1.3rem; }
+    p { margin: 0 0 1em; }
+    .huelle { max-width: var(--breite); margin: 0 auto; padding: 0 var(--rand); }
+    .vorlesen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .sprung { position: absolute; left: 1rem; top: -4rem; background: var(--tinte); color: #fff; padding: .6rem 1rem; z-index: 10; }
+    .sprung:focus { top: 1rem; }
+
+    .kopf .huelle { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+    .marke { display: inline-flex; align-items: center; gap: .6rem; color: var(--tinte); text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+    .marke svg { width: 40px; height: 40px; }
+    .navi ul { list-style: none; display: flex; flex-wrap: wrap; gap: .1rem 1.5rem; margin: 0; padding: 0; font-weight: 600; }
+    .navi a { color: var(--tinte); text-decoration: none; display: inline-block; padding: .6rem 0; }
+    .navi a:hover { text-decoration: underline; text-decoration-color: var(--mohn); text-decoration-thickness: 3px; }
+
+    /* Ausgeschnittene Knöpfe, leicht schief aufgelegt */
+    .schnipsel { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: .85rem 1.5rem; font: 800 1.1rem/1.15 var(--text); text-decoration: none; color: #fff; background: var(--kobalt); transform: rotate(-1.2deg); transition: transform .18s cubic-bezier(.2,.8,.2,1); clip-path: polygon(0 4%, 3% 0, 98% 3%, 100% 96%, 96% 100%, 1% 97%); }
+    .schnipsel:hover { transform: rotate(0deg) translateY(-2px); }
+    .schnipsel:active { transform: rotate(1deg); }
+    .schnipsel:focus-visible { clip-path: none; outline: 3px solid var(--tinte); outline-offset: 4px; }
+    .schnipsel-rot { background: var(--mohn); transform: rotate(1deg); }
+    .schnipsel-weiss { background: #fff; color: var(--tinte); box-shadow: inset 0 0 0 3px var(--tinte); clip-path: none; transform: rotate(.8deg); }
+    .knoepfe { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; align-items: center; }
+
+    /* Plakat */
+    .plakat { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
+    .plakat .huelle { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 1rem 2rem; align-items: center; }
+    .bald { display: inline-block; font-weight: 600; font-size: .95rem; background: var(--hell-kobalt); color: var(--kobalt); padding: .35rem .8rem; transform: rotate(-1deg); margin-bottom: 1.25rem; }
+    h1 { font-size: clamp(2.6rem, 6.4vw, 5.4rem); }
+    .einleitung { font-size: clamp(1.1rem, 1.5vw, 1.25rem); max-width: 31em; margin: 1.5rem 0 2rem; color: var(--grau); }
+    .bild { position: relative; }
+    .bild svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .bild figcaption { font-size: 1rem; color: var(--grau); max-width: 26em; margin: .5rem 0 0 auto; text-align: right; }
+    .bild figcaption strong { color: var(--tinte); }
+    .anhaenger { transform-origin: 470px 70px; animation: pendeln 2.6s cubic-bezier(.3,.6,.3,1) 1 both; }
+    @keyframes pendeln { 0% { transform: rotate(-9deg); } 40% { transform: rotate(5deg); } 70% { transform: rotate(-2deg); } 100% { transform: rotate(0); } }
+    .taste { transition: transform .12s ease; transform-origin: 300px 300px; }
+    .bild:hover .taste { transform: translateY(5px); }
+
+    /* Abschnitte */
+    .abschnitt { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+    .abschnitt h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); margin-bottom: clamp(1.75rem, 3vw, 2.75rem); max-width: 20ch; }
+    .gruende { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+    .gruende svg { width: 84px; height: 84px; display: block; margin-bottom: 1rem; overflow: visible; }
+    .gruende p { color: var(--grau); margin: 0; }
+
+    .pflaster { margin-top: clamp(3.5rem, 7vw, 5.5rem); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 2rem 4rem; align-items: center; }
+    .pflaster svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .pflaster h3 { font: 400 clamp(1.8rem, 3.2vw, 2.6rem)/1.1 var(--hand); margin-bottom: 1rem; }
+    .pflaster p { color: var(--grau); max-width: 30em; }
+
+    .schritte { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+    .schritte li { position: relative; }
+    .schritte .ziffer { font: 400 4.2rem/1 var(--hand); display: block; margin-bottom: .5rem; }
+    .schritte li:nth-child(1) .ziffer { color: var(--kobalt); }
+    .schritte li:nth-child(2) .ziffer { color: var(--mohn); }
+    .schritte li:nth-child(3) .ziffer { color: var(--blatt); }
+    .schritte li:nth-child(4) .ziffer { color: var(--tinte); }
+    .schritte p { color: var(--grau); margin: 0; }
+    .zusatz { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; align-items: center; color: var(--grau); }
+
+    /* Preisschilder */
+    .schilder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; align-items: start; margin-top: .5rem; }
+    .schild { position: relative; color: #fff; padding: 3.2rem 1.75rem 1.75rem; clip-path: polygon(14% 0, 86% 0, 100% 7%, 100% 100%, 0 100%, 0 7%); }
+    .schild::before { content: ""; position: absolute; top: 1.15rem; left: 50%; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: var(--papier); }
+    .schild:nth-child(1) { background: var(--kobalt); transform: rotate(-1.5deg); }
+    .schild:nth-child(2) { background: var(--mohn); transform: rotate(1deg) translateY(-.75rem); }
+    .schild:nth-child(3) { background: var(--blatt); transform: rotate(-.6deg); }
+    .schild .art { font-weight: 600; font-size: .95rem; margin: 0 0 .2rem; }
+    .schild h3 { font: 400 2rem/1.1 var(--hand); }
+    .schild .preis { font-weight: 800; font-size: 2.3rem; line-height: 1; margin: .75rem 0 1rem; }
+    .schild .preis small { font-size: 1rem; font-weight: 600; }
+    .schild ul { margin: 0 0 1rem; padding-left: 1.1rem; }
+    .schild li { margin-bottom: .3rem; }
+    .schild .fuss-text { font-size: .95rem; }
+    .schild .schnipsel-weiss { box-shadow: none; transform: rotate(-.8deg); }
+    .schild a:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    .hinweis { color: var(--grau); font-size: .95rem; margin-top: 2rem; max-width: 60em; }
+    .bald-preis { margin-bottom: 1.5rem; }
+
+    .faq { max-width: 50rem; }
+    .faq details { border-bottom: 2px solid var(--tinte); }
+    .faq details:first-child { border-top: 2px solid var(--tinte); }
+    .faq summary { cursor: pointer; list-style: none; padding: 1.15rem 2.5rem 1.15rem 0; font-weight: 800; font-size: 1.2rem; position: relative; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; position: absolute; right: .25rem; top: .55rem; font: 400 2rem/1 var(--hand); color: var(--mohn); transition: transform .2s ease; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq p { color: var(--grau); max-width: 65ch; }
+
+    .kontakt { background: var(--kobalt); color: #fff; }
+    .kontakt .huelle { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 2rem 4rem; align-items: center; }
+    .kontakt h2 { margin-bottom: 1.25rem; }
+    .kontakt ol { margin: 0; padding-left: 1.3rem; font-size: 1.1rem; }
+    .kontakt .schnipsel-weiss { box-shadow: none; font-size: clamp(1.05rem, 2vw, 1.3rem); padding: 1.2rem 1.6rem; }
+    .kontakt .schnipsel-weiss:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+    .kontakt .klein { margin-top: 1.25rem; font-size: .95rem; }
+    .kontakt a:not(.schnipsel) { color: #fff; }
+    .kontakt :focus-visible { outline-color: #fff; }
+
+    .fuss .huelle { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1.5rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+    .fuss ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0; padding: 0; }
+    .fuss a { display: inline-block; padding: .4rem 0; color: var(--tinte); }
+
+    @media (max-width: 900px) {
+      .plakat .huelle, .pflaster, .kontakt .huelle { grid-template-columns: 1fr; }
+      .gruende, .schilder { grid-template-columns: 1fr; }
+      .schritte { grid-template-columns: 1fr 1fr; }
+      .schild:nth-child(2) { transform: rotate(1deg); }
+      .bild { max-width: 520px; }
+    }
+    @media (max-width: 520px) { .schritte { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="kante"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+    <filter id="kreide"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="k"/><feDisplacementMap in="SourceGraphic" in2="k" scale="3"/></filter>
+  </svg>
+
+  <header class="kopf">
+    <div class="huelle">
+      <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M6 4h22l8 8v24H6z" fill="#c8321f" filter="url(#kante)"/><circle cx="19" cy="19" r="8" fill="#fff"/><circle cx="19" cy="19" r="8" fill="none" stroke="#1b1c1f" stroke-width="2.6"/><path d="M25 25l6 6" stroke="#1b1c1f" stroke-width="3.4" stroke-linecap="round"/></svg>
+        <span>bfsg-checkup.de</span>
+      </a>
+      <nav class="navi" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#warum">Warum</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#pakete">Pakete</a></li>
+          <li><a href="#faq">Fragen</a></li>
+          <li><a href="#kontakt">Erst-Befund</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <section class="plakat" aria-labelledby="titel">
+      <div class="huelle">
+        <div>
+          <p class="bald">Bald verfügbar: Schreiben Sie uns gern schon jetzt.</p>
+          <h1 id="titel">Ist Ihr Onlineshop barrierefrei nach BFSG?</h1>
+          <p class="einleitung">Wir prüfen Ihren Kaufprozess von der Startseite bis zum Checkout nach WCAG 2.1 AA, mit Maus, Tastatur und Screenreader. Sie bekommen einen verständlichen Bericht und auf Wunsch die fertige Umsetzung. Alles zum Festpreis.</p>
+          <div class="knoepfe">
+            <a class="schnipsel" href="#kontakt">Kostenlosen Erst-Befund anfordern</a>
+            <a class="schnipsel schnipsel-weiss" href="#pakete">Pakete und Preise</a>
+          </div>
+        </div>
+        <figure class="bild" style="margin:0">
+          <svg viewBox="0 0 560 520" aria-hidden="true" focusable="false">
+            <!-- Faden -->
+            <path d="M470 6 C 440 30, 500 50, 470 70" fill="none" stroke="#1b1c1f" stroke-width="3" stroke-linecap="round" filter="url(#kreide)"/>
+            <g class="anhaenger">
+              <!-- Preisschild aus rotem Papier -->
+              <path d="M470 70 L 545 160 L 300 505 L 30 315 L 270 30 Z" transform="rotate(4 300 280)" fill="#c8321f" filter="url(#kante)"/>
+              <circle cx="455" cy="112" r="15" fill="#fff"/>
+              <!-- Kreidestriche über den Rand -->
+              <path d="M90 300 C 160 330, 230 390, 300 470" fill="none" stroke="#ff8a6e" stroke-width="7" stroke-linecap="round" opacity=".55" filter="url(#kreide)"/>
+              <path d="M505 170 C 470 230, 430 300, 395 350" fill="none" stroke="#7f1a0d" stroke-width="5" stroke-linecap="round" opacity=".45" filter="url(#kreide)"/>
+              <!-- Tab-Taste -->
+              <g class="taste" transform="rotate(-8 290 290)">
+                <rect x="160" y="222" width="260" height="146" rx="18" fill="#9aa0aa"/>
+                <rect x="160" y="210" width="260" height="146" rx="18" fill="#fff" stroke="#1b1c1f" stroke-width="4"/>
+                <text x="196" y="300" style="font:800 64px Figtree, sans-serif" fill="#1b1c1f">Tab</text>
+                <path d="M330 266h56M368 248l18 18-18 18M392 246v40" fill="none" stroke="#1b1c1f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </g>
+            <!-- grüne und blaue Papierschnipsel -->
+            <circle cx="70" cy="110" r="38" fill="#1d7a3b" filter="url(#kante)"/>
+            <rect x="420" y="420" width="90" height="56" fill="#1f45b8" transform="rotate(12 465 448)" filter="url(#kante)"/>
+          </svg>
+          <figcaption><strong>Nicht jeder kauft mit der Maus.</strong> Kommt man nur mit der Tab-Taste bis zur Kasse? Genau das prüfen wir.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="abschnitt" aria-labelledby="warum" style="padding-top:0">
+      <div class="huelle">
+        <h2 id="warum">Warum das Thema jetzt wichtig ist</h2>
+        <div class="gruende">
+          <div>
+            <svg viewBox="0 0 84 84" aria-hidden="true" focusable="false"><rect x="4" y="6" width="74" height="74" fill="#1f45b8" transform="rotate(-4 42 42)" filter="url(#kante)"/><text x="42" y="60" text-anchor="middle" style="font:400 50px 'Permanent Marker'" fill="#fff">§</text></svg>
+            <h3>Pflicht für viele Shops</h3>
+            <p>Seit dem 28. Juni 2025 müssen Onlineshops für Verbraucher barrierefrei sein. Ausgenommen sind nur Kleinstunternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz.</p>
+          </div>
+          <div>
+            <svg viewBox="0 0 84 84" aria-hidden="true" focusable="false"><path d="M42 4 L 82 78 L 2 78 Z" fill="#c8321f" filter="url(#kante)"/><text x="42" y="70" text-anchor="middle" style="font:400 42px 'Permanent Marker'" fill="#fff">!</text></svg>
+            <h3>Behörden und Abmahnungen</h3>
+            <p>Die Marktüberwachung kann Mängel beanstanden und Bußgelder verhängen. Dazu kommen Abmahnungen von Mitbewerbern und Verbänden.</p>
+          </div>
+          <div>
+            <svg viewBox="0 0 84 84" aria-hidden="true" focusable="false"><circle cx="30" cy="44" r="28" fill="#1d7a3b" filter="url(#kante)"/><circle cx="56" cy="40" r="26" fill="#1f45b8" opacity=".9" filter="url(#kante)"/><circle cx="44" cy="58" r="22" fill="#c8321f" opacity=".9" filter="url(#kante)"/></svg>
+            <h3>Mehr Kundschaft</h3>
+            <p>Gute Kontraste, klare Formulare und Tastaturbedienung machen das Einkaufen für alle leichter, besonders auf dem Handy.</p>
+          </div>
+        </div>
+
+        <div class="pflaster">
+          <svg viewBox="0 0 480 300" role="img" aria-labelledby="pflaster-t">
+            <title id="pflaster-t">Ein blaues Papierstück mit einem roten Riss. Ein Pflaster klebt darüber, der Riss läuft darunter weiter.</title>
+            <rect x="10" y="20" width="460" height="260" fill="#1f45b8" transform="rotate(-2 240 150)" filter="url(#kante)"/>
+            <path d="M60 60 L 140 120 L 110 160 L 220 190 L 200 230 L 330 250 L 300 200 L 420 220" fill="none" stroke="#ff6a4d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" filter="url(#kreide)"/>
+            <g transform="rotate(-18 200 170)">
+              <rect x="110" y="140" width="190" height="62" rx="31" fill="#f3d4b8"/>
+              <rect x="175" y="148" width="60" height="46" rx="6" fill="#e2b48e"/>
+              <g fill="#c79a74"><circle cx="135" cy="160" r="3"/><circle cx="150" cy="182" r="3"/><circle cx="262" cy="160" r="3"/><circle cx="278" cy="182" r="3"/></g>
+            </g>
+          </svg>
+          <div>
+            <h3>Ein Overlay ist ein Pflaster</h3>
+            <p>Overlay-Plugins legen sich per Skript über den Shop. Darunter bleiben die Fehler im Code bestehen. Wir finden die Ursachen und beheben sie direkt im Shop, dauerhaft.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt" id="ablauf" aria-labelledby="ablauf-titel" style="padding-top:0">
+      <div class="huelle">
+        <h2 id="ablauf-titel">So läuft der Check ab</h2>
+        <ol class="schritte">
+          <li><span class="ziffer" aria-hidden="true">1</span><h3>Automatischer Scan</h3><p>Wir testen die wichtigen Seiten Ihres Kaufprozesses gegen alle automatisch prüfbaren Kriterien der WCAG 2.1 AA, dazu Tastatur und Handy-Ansicht.</p></li>
+          <li><span class="ziffer" aria-hidden="true">2</span><h3>Prüfung von Hand</h3><p>Automatische Tests finden nur einen Teil der Barrieren. Deshalb prüfen wir nach fester Checkliste mit Tastatur und Screenreader, vom Suchen bis zum Bezahlen.</p></li>
+          <li><span class="ziffer" aria-hidden="true">3</span><h3>Verständlicher Bericht</h3><p>Ein PDF, sortiert nach Priorität: Was ist das Problem, wo tritt es auf, wie dringend ist es und wie wird es behoben.</p></li>
+          <li><span class="ziffer" aria-hidden="true">4</span><h3>Umsetzung</h3><p>Auf Wunsch setzen wir die Lösungen um oder liefern sie Ihrer Agentur zu. Danach prüfen wir erneut und erstellen Ihre Erklärung zur Barrierefreiheit.</p></li>
+        </ol>
+        <p class="zusatz"><a class="schnipsel schnipsel-weiss" href="../../beispielbericht.pdf">Beispielbericht ansehen (PDF, 170 KB)</a> <span>Erstellt für einen absichtlich fehlerhaften Demo-Shop.</span></p>
+      </div>
+    </section>
+
+    <section class="abschnitt" id="pakete" aria-labelledby="pakete-titel" style="padding-top:0">
+      <div class="huelle">
+        <h2 id="pakete-titel">Drei Preisschilder, keine Überraschung</h2>
+        <p class="bald bald-preis">Bald verfügbar: Buchungen sind in Kürze möglich.</p>
+        <div class="schilder">
+          <div class="schild">
+            <p class="art">Einstieg</p>
+            <h3>Quick-Check</h3>
+            <p class="preis">390 € <small>einmalig</small></p>
+            <ul><li>Scan von bis zu 6 Seiten des Kaufprozesses</li><li>Prüfung von Hand nach Checkliste</li><li>Bericht als PDF mit den 10 wichtigsten Befunden</li><li>30 Minuten Besprechung per Video</li></ul>
+            <p class="fuss-text">Fertig in 5 Werktagen.</p>
+            <a class="schnipsel schnipsel-weiss" href="#kontakt">Quick-Check anfragen</a>
+          </div>
+          <div class="schild">
+            <p class="art">Empfohlen</p>
+            <h3>Fix-Paket</h3>
+            <p class="preis">ab 1.500 € <small>einmalig</small></p>
+            <ul><li>Alles aus dem Quick-Check, mit allen Befunden</li><li>Umsetzung der Lösungen im Theme oder Template</li><li>Alternativtexte für Produktbilder</li><li>Erneute Prüfung nach der Umsetzung</li><li>Erklärung zur Barrierefreiheit für Ihren Shop</li></ul>
+            <p class="fuss-text">Festpreis nach dem Quick-Check, je nach Shopgröße.</p>
+            <a class="schnipsel schnipsel-weiss" href="#kontakt">Fix-Paket anfragen</a>
+          </div>
+          <div class="schild">
+            <p class="art">Dauerhaft</p>
+            <h3>Monitoring</h3>
+            <p class="preis">ab 49 € <small>pro Monat</small></p>
+            <ul><li>Monatlicher Scan Ihrer wichtigsten Seiten</li><li>Kurzer Bericht mit neuen Befunden</li><li>Alternativtexte für neue Produkte</li><li>Monatlich kündbar</li></ul>
+            <a class="schnipsel schnipsel-weiss" href="#kontakt">Monitoring anfragen</a>
+          </div>
+        </div>
+        <p class="hinweis">Unsere Leistung ist eine technische Prüfung nach WCAG 2.1 AA und keine Rechtsberatung. Für rechtliche Fragen wenden Sie sich bitte an eine Anwaltskanzlei.</p>
+      </div>
+    </section>
+
+    <section class="abschnitt" id="faq" aria-labelledby="faq-titel" style="padding-top:0">
+      <div class="huelle">
+        <h2 id="faq-titel">Häufige Fragen</h2>
+        <div class="faq">
+          <details><summary>Ist mein Shop vom BFSG betroffen?</summary><p>Betroffen sind Onlineshops, die an Verbraucher verkaufen. Ausgenommen sind Kleinstunternehmen mit weniger als 10 Beschäftigten und höchstens 2 Mio. € Jahresumsatz oder Jahresbilanzsumme. Reine B2B-Shops fallen in der Regel nicht darunter. Im Zweifel klärt eine Anwaltskanzlei verbindlich, ob Ihr Shop betroffen ist.</p></details>
+          <details><summary>Was ist der kostenlose Erst-Befund?</summary><p>Sie schicken uns die Adresse Ihres Shops. Wir scannen die Startseite und eine Produktseite und nennen Ihnen per E-Mail drei konkrete Befunde mit kurzer Erklärung. Das ist unverbindlich und kostet nichts.</p></details>
+          <details><summary>Reicht ein Barrierefreiheits-Plugin oder Overlay?</summary><p>In den meisten Fällen nicht. Solche Werkzeuge ändern die Darstellung, beheben aber selten die Ursachen im Code, etwa fehlende Beschriftungen von Formularfeldern.</p></details>
+          <details><summary>Welche Shopsysteme unterstützen Sie?</summary><p>Die Prüfung funktioniert mit jedem Shop, der im Browser läuft. Bei der Umsetzung arbeiten wir vor allem mit Shopify, Shopware und WooCommerce.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+      <div class="huelle">
+        <div>
+          <h2 id="kontakt-titel">Kostenlosen Erst-Befund anfordern</h2>
+          <ol><li>Adresse Ihres Shops nennen</li><li>Optional: Shopsystem und Ihre Fragen</li><li>Innerhalb von 2 Werktagen erhalten Sie drei konkrete Befunde</li></ol>
+        </div>
+        <div>
+          <a class="schnipsel schnipsel-weiss" href="mailto:kontakt@bfsg-checkup.de?subject=Kostenloser%20Erst-Befund">E-Mail an kontakt@bfsg-checkup.de</a>
+          <p class="klein">Ihre Angaben verwenden wir nur, um Ihre Anfrage zu beantworten. Mehr dazu in der <a href="../../datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fuss">
+    <div class="huelle">
+      <span>© 2026 bfsg-checkup.de</span>
+      <nav aria-label="Rechtliches"><ul><li><a href="../../impressum.html">Impressum</a></li><li><a href="../../datenschutz.html">Datenschutz</a></li><li><a href="../../barrierefreiheit.html">Barrierefreiheit</a></li></ul></nav>
+    </div>
+  </footer>
+</body>
+</html>
