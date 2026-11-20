@@ -8,7 +8,7 @@ Statische Landingpage ohne Build-Schritt, ohne Cookies, ohne Tracking und ohne e
 | `impressum.html`, `datenschutz.html` | Pflichtseiten, Platzhalter sind gelb markiert (`class="platzhalter"`) |
 | `style.css` | Design „Prüfzeichnung“ (siehe `DESIGN.md` im Hauptordner) |
 | `menue.js` | Burger-Menü auf schmalen Bildschirmen, Tageszähler seit Inkrafttreten des BFSG, Paketauswahl und Befund-Nummern in Fig. 1 (ohne Skript bleibt alles lesbar) |
-| `schrift/` | Barlow und Barlow Condensed, selbst gehostet (SIL Open Font License, `OFL-barlow.txt`) |
+| `schrift/` | Hedvig Letters Serif und Geist, selbst gehostet (SIL Open Font License, `OFL-hedvig-letters.txt`, `OFL-geist.txt`) |
 | `barrierefreiheit.html` | Erklärung zur Barrierefreiheit der eigenen Seite |
 | `beispielbericht.pdf` | Bericht zum Demo-Shop aus `test/` (keine echten Kundendaten) |
 

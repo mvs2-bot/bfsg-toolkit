@@ -7,8 +7,8 @@
   <meta name="description" content="Wir prüfen den Kaufprozess Ihres Onlineshops nach WCAG 2.1 AA und dem Barrierefreiheitsstärkungsgesetz (BFSG): verständlicher Bericht, konkrete Lösungen, Festpreise.">
   <link rel="canonical" href="https://bfsg-checkup.de/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="schrift/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="schrift/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="schrift/hedvig-letters-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="schrift/geist-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="menue.js" defer></script>
   <meta property="og:title" content="BFSG-Check für Onlineshops">
@@ -26,7 +26,7 @@
 
       <header class="kopf">
         <a class="marke" href="./" aria-label="bfsg-checkup.de, zur Startseite">
-          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="1" y="1" width="38" height="38" fill="none" stroke="#14171d" stroke-width="2"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="#14171d" stroke-width="2.6"/><path d="M24.4 24.4L31 31" stroke="#14171d" stroke-width="3.6" stroke-linecap="square"/><path d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke="#b0172f" stroke-width="2.4" stroke-linecap="square"/></svg>
+          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="1" y="1" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="17.5" r="9" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M24.4 24.4L31 31" stroke="currentColor" stroke-width="3.6" stroke-linecap="square"/><path class="haken" d="M13.4 17.9l3 3 5.1-5.7" fill="none" stroke-width="2.4" stroke-linecap="square"/></svg>
           <span>bfsg-checkup.de</span>
         </a>
         <button class="burger" type="button" aria-expanded="false" aria-controls="menue" hidden>
@@ -46,7 +46,7 @@
       </header>
 
       <main id="inhalt">
-        <section class="blatt" aria-labelledby="titel">
+        <section class="blatt blatt-start" aria-labelledby="titel">
           <div class="kopfzeile">
             <div>
               <h1 id="titel">Ist Ihr Onlineshop barrierefrei nach BFSG?</h1>
@@ -61,8 +61,8 @@
               <svg viewBox="0 0 720 440" role="img" aria-labelledby="fig1-t">
                 <title id="fig1-t">Strichzeichnung einer Checkout-Seite mit drei nummerierten Barrieren: Feld ohne Beschriftung, Knopf mit zu schwachem Kontrast, Produktbild ohne Alternativtext.</title>
                 <defs>
-                  <pattern id="schraffur" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#8d949e" stroke-width="1"/></pattern>
-                  <pattern id="schraffur-dicht" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#c9ced5" stroke-width="1.2"/></pattern>
+                  <pattern id="schraffur" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="schraffur-linie" stroke-width="1"/></pattern>
+                  <pattern id="schraffur-dicht" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" class="schraffur-fein" stroke-width="1.2"/></pattern>
                 </defs>
                 <!-- Browserrahmen -->
                 <rect class="t" x="10" y="10" width="560" height="420"/>
@@ -73,30 +73,30 @@
                 <rect class="d" x="34" y="58" width="90" height="18"/>
                 <text class="txt" x="34" y="104">Warenkorb</text><text class="txt" x="114" y="104">Adresse</text><text class="txt" x="182" y="104">Zahlung</text>
                 <line class="t" x1="34" y1="114" x2="246" y2="114"/>
-                <line x1="34" y1="114" x2="164" y2="114" stroke="#14171d" stroke-width="4"/>
+                <line x1="34" y1="114" x2="164" y2="114" stroke="currentColor" stroke-width="4"/>
                 <!-- Formular -->
                 <text class="txt" x="34" y="148">Vorname</text><rect class="t" x="34" y="156" width="150" height="30"/>
                 <text class="txt" x="200" y="148">Nachname</text><rect class="t" x="200" y="156" width="150" height="30"/>
                 <g data-teil="1">
                   <rect class="t teil" x="34" y="208" width="316" height="30"/>
                   <path class="leiter" d="M350 223 C 372 223, 362 118, 420 118 S 600 100, 640 96"/>
-                  <circle cx="350" cy="223" r="3" fill="#b0172f"/>
+                  <circle cx="350" cy="223" r="3" class="punkt"/>
                   <text class="ziffer" x="648" y="103">1</text>
                 </g>
                 <text class="txt" x="34" y="264">Straße und Hausnummer</text><rect class="t" x="34" y="272" width="316" height="30"/>
                 <g data-teil="2">
-                  <rect class="teil" x="34" y="330" width="150" height="40" fill="url(#schraffur-dicht)" stroke="#14171d" stroke-width="1.6"/>
-                  <text x="109" y="355" text-anchor="middle" style="font:500 14px 'Barlow Condensed',sans-serif;fill:#b9bec6">Weiter</text>
+                  <rect class="teil" x="34" y="330" width="150" height="40" fill="url(#schraffur-dicht)" stroke="currentColor" stroke-width="1.6"/>
+                  <text x="109" y="355" text-anchor="middle" class="txt-blass">Weiter</text>
                   <path class="leiter" d="M184 350 C 330 380, 520 350, 640 296"/>
-                  <circle cx="184" cy="350" r="3" fill="#b0172f"/>
+                  <circle cx="184" cy="350" r="3" class="punkt"/>
                   <text class="ziffer" x="648" y="303">2</text>
                 </g>
                 <!-- Bestellübersicht -->
                 <rect class="d" x="384" y="140" width="164" height="232"/>
                 <g data-teil="3">
-                  <rect class="teil" x="398" y="154" width="64" height="64" fill="url(#schraffur)" stroke="#14171d" stroke-width="1.6"/>
+                  <rect class="teil" x="398" y="154" width="64" height="64" fill="url(#schraffur)" stroke="currentColor" stroke-width="1.6"/>
                   <path class="leiter" d="M462 186 C 540 186, 560 200, 640 200"/>
-                  <circle cx="462" cy="186" r="3" fill="#b0172f"/>
+                  <circle cx="462" cy="186" r="3" class="punkt"/>
                   <text class="ziffer" x="648" y="207">3</text>
                 </g>
                 <line class="d" x1="474" y1="166" x2="534" y2="166"/><line class="d" x1="474" y1="180" x2="516" y2="180"/>
@@ -165,18 +165,18 @@
             <figure>
               <svg viewBox="0 0 640 230" role="img" aria-labelledby="fig2-t">
                 <title id="fig2-t">Schnittzeichnung: Links liegt eine Overlay-Schicht über dem Shop-Code, die drei Fehler darunter bleiben. Rechts ist der Shop-Code selbst korrigiert, ohne Fehler.</title>
-                <defs><pattern id="s2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#8d949e" stroke-width="1"/></pattern></defs>
+                <defs><pattern id="s2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="schraffur-linie" stroke-width="1"/></pattern></defs>
                 <text class="txt" x="0" y="18">Fig. 2a, Overlay-Plugin</text>
-                <rect x="0" y="40" width="290" height="34" fill="#fff" stroke="#14171d" stroke-width="1.6" stroke-dasharray="6 4"/>
+                <rect x="0" y="40" width="290" height="34" class="overlay-flaeche" stroke="currentColor" stroke-width="1.6" stroke-dasharray="6 4"/>
                 <text class="txt-k" x="12" y="62">Overlay-Skript</text>
-                <rect x="0" y="100" width="290" height="70" fill="url(#s2)" stroke="#14171d" stroke-width="1.6"/>
+                <rect x="0" y="100" width="290" height="70" fill="url(#s2)" stroke="currentColor" stroke-width="1.6"/>
                 <text class="txt-k" x="12" y="194">Shop-Code</text>
-                <g stroke="#b0172f" stroke-width="3" stroke-linecap="square"><path d="M52 124l18 18M70 124l-18 18"/><path d="M136 124l18 18M154 124l-18 18"/><path d="M220 124l18 18M238 124l-18 18"/></g>
-                <text class="txt-k" x="0" y="222" style="fill:#b0172f">Fehler bleiben bestehen</text>
+                <g class="kreuze" stroke-width="3" stroke-linecap="square"><path d="M52 124l18 18M70 124l-18 18"/><path d="M136 124l18 18M154 124l-18 18"/><path d="M220 124l18 18M238 124l-18 18"/></g>
+                <text class="txt-k" x="0" y="222">Fehler bleiben bestehen</text>
                 <text class="txt" x="350" y="18">Fig. 2b, unsere Prüfung</text>
-                <rect x="350" y="100" width="290" height="70" fill="url(#s2)" stroke="#14171d" stroke-width="1.6"/>
+                <rect x="350" y="100" width="290" height="70" fill="url(#s2)" stroke="currentColor" stroke-width="1.6"/>
                 <text class="txt-k" x="362" y="194">Shop-Code, korrigiert</text>
-                <g fill="none" stroke="#14171d" stroke-width="3" stroke-linecap="square"><path d="M400 133l7 7 13-14"/><path d="M484 133l7 7 13-14"/><path d="M568 133l7 7 13-14"/></g>
+                <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M400 133l7 7 13-14"/><path d="M484 133l7 7 13-14"/><path d="M568 133l7 7 13-14"/></g>
                 <text class="txt-k" x="350" y="222">Ursache im Code behoben</text>
               </svg>
             </figure>
